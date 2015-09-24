@@ -7,12 +7,12 @@ import (
 	"github.com/julienschmidt/httprouter"
 )
 
-type router struct {
+type Router struct {
 	*httprouter.Router
 }
 
-func NewRouter() *router {
-	return &router{httprouter.New()}
+func NewRouter() *Router {
+	return &Router{httprouter.New()}
 }
 
 func wrapHandler(handler http.Handler) httprouter.Handle {
@@ -22,30 +22,30 @@ func wrapHandler(handler http.Handler) httprouter.Handle {
 	}
 }
 
-func (r *router) Get(path string, handler http.Handler) {
+func (r *Router) Get(path string, handler http.Handler) {
 	r.GET(path, wrapHandler(handler))
 }
 
-func (r *router) Post(path string, handler http.Handler) {
+func (r *Router) Post(path string, handler http.Handler) {
 	r.POST(path, wrapHandler(handler))
 }
 
-func (r *router) Put(path string, handler http.Handler) {
+func (r *Router) Put(path string, handler http.Handler) {
 	r.PUT(path, wrapHandler(handler))
 }
 
-func (r *router) Delete(path string, handler http.Handler) {
+func (r *Router) Delete(path string, handler http.Handler) {
 	r.DELETE(path, wrapHandler(handler))
 }
 
-func (r *router) Head(path string, handler http.Handler) {
+func (r *Router) Head(path string, handler http.Handler) {
 	r.HEAD(path, wrapHandler(handler))
 }
 
-func (r *router) Options(path string, handler http.Handler) {
+func (r *Router) Options(path string, handler http.Handler) {
 	r.OPTIONS(path, wrapHandler(handler))
 }
 
-func (r *router) Patch(path string, handler http.Handler) {
+func (r *Router) Patch(path string, handler http.Handler) {
 	r.PATCH(path, wrapHandler(handler))
 }
